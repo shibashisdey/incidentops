@@ -1,0 +1,25 @@
+package com.incidentops.incidentops.exception;
+
+import com.incidentops.incidentops.common.response.ApiResponse;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<ApiResponse<Void>> handleException(Exception ex) {
+
+		ApiResponse<Void> response = ApiResponse.<Void>builder()
+				.success(false)
+				.message(ex.getMessage())
+				.data(null)
+				.build();
+
+		return ResponseEntity
+				.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.body(response);
+	}
+}

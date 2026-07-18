@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: incidentops
+  datasource:
+    url: jdbc:postgresql://localhost:5432/incidentops_db
+    username: postgres
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
+
+    properties:
+      hibernate:
+        format_sql: true
