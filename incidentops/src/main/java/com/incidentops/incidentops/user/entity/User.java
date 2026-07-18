@@ -1,8 +1,12 @@
 package com.incidentops.incidentops.user.entity;
 
 import com.incidentops.incidentops.common.entity.BaseEntity;
+import com.incidentops.incidentops.user.enums.UserRole;
+import com.incidentops.incidentops.user.enums.UserStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -36,12 +40,14 @@ public class User extends BaseEntity {
 	@Column(nullable = false, unique = true, length = 255)
 	private String email;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 255)
 	private String password;
 
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length = 50)
-	private String role;
+	private UserRole role;
 
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length = 50)
-	private String status;
+	private UserStatus status;
 }
